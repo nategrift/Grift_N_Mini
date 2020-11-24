@@ -1,3 +1,37 @@
 html {
-    background-color: pink;
+    background-color: rgb(240, 240, 240);
+    font-size: 62.5%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.car-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    & > div {
+        width: 40%;
+        max-width: 300px;
+        min-width: 250px;
+        background-color: white;
+        border-radius: 5px;
+        padding: 1rem;
+        margin: 1rem;
+        box-shadow: 0px 0.75rem 1.5rem rgba(0,0,0,0.2);
+        transition: all 0.5s;
+        text-align: center;
+        font-size: 1.4rem;
+    
+
+        img {
+            width: 100%;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 1rem 2rem rgba(0,0,0,0.2);
+        }
+    }
 }

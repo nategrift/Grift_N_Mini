@@ -6,9 +6,43 @@
     <title>Mini</title>
     <link rel="stylesheet" href="css/master.css" type="text/css">
     <link rel="stylesheet" href="css/reset.css" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap" rel="stylesheet"> 
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
 </head>
 <body>
-    
+    <header> <!-- Header -->
+
+    </header>
+
+    <main id="app"> <!-- controlled by vue -->
+        <!--Car thumb nails-->
+        <div class="car-list">
+            <div v-for="cars in mini_cars" @click="carLightBox(cars.car_id)">
+                <img :src="`images/${cars.car_thumbnail}`" :alt="cars.car_name">
+                <h4>{{ cars.car_name }}</h4>
+            </div>
+        </div>
+
+        <!--Car lightbox-->
+        <div class="light_box" class="light_box" v-bind:class="{'light_box--show': lightBoxShown }">
+            <div class="light_box--backdrop" @click="hideLightBox"></div>
+            <div class="light_box--center">
+                <img src="images/times-symbol.svg" alt="X" class="light_box--exit" @click="hideLightBox">
+                <h3>{{ selectedCar.car_name }}</h3>
+                <img :src="`images/${selectedCar.car_image}`" alt="">
+                <p>{{ selectedCar.car_description }}</p>
+                <h5><span>Starting at</span> {{ selectedCar.car_price }}</h5>
+            </div>
+        </div>
+    </main> <!-- END of controlled by vue -->
+
+    <footer>
+
+    </footer>
 
     <script src="js/main.js" type="module"></script>
 </body>
