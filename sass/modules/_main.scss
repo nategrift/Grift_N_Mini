@@ -1,7 +1,12 @@
 html {
-    background-color: rgb(240, 240, 240);
+    background-color: $light_grey;
     font-size: 62.5%;
     font-family: 'Roboto', sans-serif;
+}
+
+#app {
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .car-list {
@@ -10,16 +15,17 @@ html {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
 
     & > div {
         width: 40%;
         max-width: 300px;
         min-width: 250px;
-        background-color: white;
+        background-color: $white;
         border-radius: 5px;
         padding: 1rem;
         margin: 1rem;
-        box-shadow: 0px 0.75rem 1.5rem rgba(0,0,0,0.2);
+        box-shadow: 0px 0.75rem 1.5rem $light_shadow;
         transition: all 0.5s;
         text-align: center;
         font-size: 1.4rem;
@@ -31,7 +37,23 @@ html {
 
         &:hover {
             transform: scale(1.05);
-            box-shadow: 0px 1rem 2rem rgba(0,0,0,0.2);
+            box-shadow: 0px 1rem 2rem $light_shadow;
         }
     }
+}
+
+.title_main {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.title_error {
+    font-size: 1.4rem;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    background-color: rgb(167, 55, 55);
+    color: $white;
 }

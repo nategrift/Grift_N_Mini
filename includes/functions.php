@@ -6,7 +6,7 @@
      $result = array();
 
      function getAllUsers($conn) {
-         $query = "SELECT * FROM mini_cars";
+         $query = "SELECT car_id, car_name, car_thumbnail, car_image, car_video, car_slogan FROM mini_cars";
  
          $runQuery = $conn->query($query);
  
