@@ -5,31 +5,46 @@ import { fetchData } from "./modules/fetchData.js";
     let mini_vue = new Vue({
 
         data: {
+            error: '',
             selectedMiniVideo: '',
             selectedCar: '',
             mini_cars: [],
             lightBoxShown: false,
+            selectedVideo: '',
+            videoPlaying: true,
         },
 
-        // this is the "mounted" lifecycle hook. Vue is done creating itself, and has attached itself to the "app" div on the page
         mounted: function() {
-            console.log("Vue is mounted!");
-
-            fetchData("./includes/index.php").then(data => this.mini_cars = data).catch(err => console.log(err));
+            fetchData("./includes/index.pp").then(data => this.updateCars(data)).catch(err => this.error = err);
         },
 
 
         methods: {
+            toggleVideoPlaying() {
+                let video = this.$refs.car_video;
+                if (this.videoPlaying) {
+                    video.pause();
+                    this.videoPlaying = false
+                } else {
+                    video.play();
+                    this.videoPlaying = true
+                }
+            },
             changeVideo(id) {
-                console.log("id");
+                if (this.mini_cars[id] && this.mini_cars[id].car_id == id) {
+                    this.selectedVideo = this.mini_cars[id];
+                } else {
+                    fetchData(`./includes/index.php?id=${id}`).then(data => this.selectedVideo = data[0]).catch(err => this.error = err);
+                }
             },
             updateCars(cars) {
-                console.log('Updated cars');
-                console.log(cars);
                 this.mini_cars = cars;
+                if (this.selectedVideo == '') {
+                    this.selectedVideo = cars[0];
+                }
             },
             carLightBox(carID) {
-                fetchData(`./includes/index.php?id=${carID}`).then(data => this.showLightBox(data[0])).catch(err => console.log(err));
+                fetchData(`./includes/index.php?id=${carID}`).then(data => this.showLightBox(data[0])).catch(err => this.error = err);
             },
             showLightBox(car) {
                 this.selectedCar = car;

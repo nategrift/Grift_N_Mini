@@ -14,11 +14,42 @@
     
 </head>
 <body>
-    <header> <!-- Header -->
-
+    <header class="header-container"> <!-- Header -->
+        <div class="header">
+            <img src="images/logo.png" alt="logo">
+            <ul class="header_links">
+                <li>Models</li>
+                <li>Tools</li>
+                <li>Discover</li>
+                <li>Owners</li>
+                <li>Pre-owned</li>
+            </ul>
+        </div>
     </header>
 
     <main id="app"> <!-- controlled by vue -->
+        <div v-if="error">
+            <h2 class="title_main">Error Loading Content</h2>
+            <p class="title_error">{{ error }}</p>
+        </div>
+        <!-- Car Video Screen -->
+        <div class="videos">
+            <div class="videos_title">
+                <h1>{{ selectedVideo.car_name }}</h1>
+                <p>{{ selectedVideo.car_slogan }}</p>
+            </div>
+            <div @click="toggleVideoPlaying">
+                <video ref="car_video" :src="`videos/${selectedVideo.car_video}`" autoplay loop muted></video>
+            </div>
+            <div class="videos_list">
+                <div v-for="car in mini_cars" @click="changeVideo(car.car_id)">
+                    <img :src="`images/${car.car_image}`" :alt="car.car_name">
+                </div>
+            </div>
+        </div> 
+
+        <h3 v-if="mini_cars.length != 0" class="title_main">Our Models</h3>
+
         <!--Car thumb nails-->
         <div class="car-list">
             <div v-for="cars in mini_cars" @click="carLightBox(cars.car_id)">

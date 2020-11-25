@@ -1,0 +1,33 @@
+.header-container {
+    width: 100%;
+    border-bottom: 1px solid $header_border;
+}
+
+.header {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    &_links {
+        display: inherit;
+        font-size: 1rem;
+        margin-left: 1.4rem;
+        text-transform: uppercase;
+        li {
+            margin-right: 1.8rem;
+            transition: color 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                color: $hover_nav;
+            }
+        }
+    }
+    img {
+        max-width: 90px;
+        margin: 0.9rem;
+    }
+}
